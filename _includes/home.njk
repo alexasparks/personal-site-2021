@@ -2,15 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <title>{{ name }}</title>
+    <link rel="stylesheet" href="public/styles/index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1>{{ title }}</h1>
-    <div></div>
-    {{ content | safe }}
+  <section class="header">
+    <h1>{{ name }}</h1>
+    <p>{{ job }}</p>
+  </section>
+
+  <section class="github-contributions">
+    <h2 id="label">github</h2>
+    <img id="calendar" src="public/svg/github-calendar.svg" alt="github contribution calendar" />
+  </section>
+
+  <section class="writing">
+    <h2>writing</h2>
+    <div class="post-preview">
+      <h3 class="post-header"></h3>
+      <p class="post-content"></p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>contact</h2>
+    <form>
+      <label for="name">name</label>
+      <input type="text" id="name">
+      <label for="message">message</label>
+      <input type="textarea" id="message">
+      <input type="submit" value="send">
+    </form>
+  </section>
+
+  {{ content | safe }}
 </body>
 </html>

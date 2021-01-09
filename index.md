@@ -1,6 +1,5 @@
 ---
 layout: home.njk
-title: Alexa Sparks
+name: Alexa Sparks
+job: Software Developer
 ---
-
-## Software developer

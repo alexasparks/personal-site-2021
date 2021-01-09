@@ -1,0 +1,64 @@
+:root {
+  --background-color: #feccc0;
+  --text-color: #b40b11;
+}
+
+body {
+  background-color: var(--background-color);
+  color: #000;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 8vw;
+  margin: 0;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 1.5vw;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 21px;
+  margin: 0;
+}
+
+.header {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.github-contributions {
+  border: 1px solid #000;
+  padding-top: 20vh;
+  padding-left: 1.3vw;
+  padding-right: 1vw;
+  position: relative;
+}
+
+.github-contributions #calendar {
+  margin-left: 2vw;
+  margin-bottom: 1vw;
+}
+
+.github-contributions #label {
+  color: #000;
+  text-transform: uppercase;
+  transform-origin: left center;
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: 4px;
+  margin: 0;
+}
+
+.writing {
+  margin-top: 4vw;
+}
