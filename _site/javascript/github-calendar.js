@@ -40,10 +40,6 @@ const setCalendarStyles = (calendarData, weeks) => {
   })
 }
 
-// we want to clear localStorage after an hour
-const expiration = new Date();
-const hour = expiration.setHours(expiration.getHours() + 1);
-
 const fetchContributionData = (weeks) => {
   // @TODO: Update the date string every new year (or think of automated solution)
   const githubQuery = {
@@ -71,7 +67,7 @@ const fetchContributionData = (weeks) => {
   fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      Authorization: 'Bearer f5ed5bc6d4753de446587c263051349c14cf3cbd',
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       'Content-Type': 'application/json',
     },
     body,
@@ -81,32 +77,24 @@ const fetchContributionData = (weeks) => {
       const dataJSON = JSON.stringify(data);
       const parsedData = JSON.parse(dataJSON);
 
-      window.localStorage.setItem('calendar-json', dataJSON);
-
-      window.localStorage.setItem('expiration', hour);
-
       setCalendarStyles(parsedData, weeks);
     })
+    .catch((error) => console.error(error));
 }
 
 window.onload = function() {
-  // clear localStorage after an hour
-  if (new Date().getHours() >= expiration.getHours()) {
-    window.localStorage.removeItem('calendar-json');
-    window.localStorage.removeItem('expiration');
-  }
+  // change background color when user refreshes page
+  const root = document.documentElement;
+  const colors = ['rgb(221, 132, 52)', 'rgb(254, 204, 192)', 'rgb(226, 181, 147)', 'rgb(220, 220, 220)', 'rgb(153, 170, 145)', 'rgb(93, 131, 167)'];
+  const randomNumber = Math.floor(Math.random() * colors.length);
+  root.style.setProperty('--background-color', colors[randomNumber]);
 
+  // clear localStorage after an hour
   const calendarObject = document.getElementById('calendar');
   const calendarDocument = calendarObject.contentDocument;
   const calendarSVG = calendarDocument.getElementById('github-calendar');
 
   const weeks = calendarSVG.getElementsByTagName('g')
 
-  const cachedCalendarData = window.localStorage.getItem('calendar-json');
-
-  if (cachedCalendarData) {
-    setCalendarStyles(JSON.parse(cachedCalendarData), weeks);
-  } else {
-    fetchContributionData(weeks);
-  }
+  fetchContributionData(weeks);
 }
