@@ -6,4 +6,5 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.setLibrary('njk', nunjucksEnvironment);
 
     eleventyConfig.addPassthroughCopy('public');
+    eleventyConfig.addPassthroughCopy('javascript');
 }
