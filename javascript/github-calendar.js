@@ -40,7 +40,7 @@ const setCalendarStyles = (calendarData, weeks) => {
   })
 }
 
-const fetchContributionData = (weeks) => {
+const fetchContributionData = async () => {
   // @TODO: Update the date string every new year (or think of automated solution)
   const githubQuery = {
     "query" : `{
@@ -64,25 +64,22 @@ const fetchContributionData = (weeks) => {
 
   const body = JSON.stringify(githubQuery);
 
-  fetch('https://api.github.com/graphql', {
+  const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      Authorization: `Bearer `,
       'Content-Type': 'application/json',
     },
     body,
   })
-    .then((response) => response.json())
-    .then((data) => {
-      const dataJSON = JSON.stringify(data);
-      const parsedData = JSON.parse(dataJSON);
-
-      setCalendarStyles(parsedData, weeks);
-    })
     .catch((error) => console.error(error));
+
+  const responseJSON = await response.json();
+
+  return responseJSON;
 }
 
-window.onload = function() {
+window.onload = async function() {
   // change background color when user refreshes page
   const root = document.documentElement;
   const colors = [
@@ -103,5 +100,7 @@ window.onload = function() {
 
   const weeks = calendarSVG.getElementsByTagName('g')
 
-  fetchContributionData(weeks);
+  const contributionData = await fetchContributionData();
+
+  setCalendarStyles(contributionData, weeks);
 }

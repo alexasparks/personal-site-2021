@@ -22,9 +22,13 @@
 
   <section class="writing">
     <h2>writing</h2>
-    <div class="post-preview">
-      <h3 class="post-header"></h3>
-      <p class="post-content"></p>
+    <div class="posts">
+      {% for post in wordpress.posts %}
+        <div class="post-preview">
+          <h3 class="post-header">{{post.title}}</h3>
+          <span id="post-html">{{post.content | safe}}</span>
+        </div>
+      {% endfor %}
     </div>
   </section>
 
