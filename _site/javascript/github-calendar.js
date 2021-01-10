@@ -82,18 +82,42 @@ const fetchContributionData = async () => {
 window.onload = async function() {
   // change background color when user refreshes page
   const root = document.documentElement;
-  const colors = [
+
+  const backgroundColors = [
     'rgb(221, 132, 52)',
     'rgb(254, 204, 192)',
     'rgb(226, 181, 147)',
     'rgb(220, 220, 220)',
     'rgb(153, 170, 145)',
-    'rgb(93, 131, 167)',
+    'rgb(86, 124, 160)',
+    'rgb(248, 129, 251)',
   ];
-  const randomNumber = Math.floor(Math.random() * colors.length);
-  root.style.setProperty('--background-color', colors[randomNumber]);
 
-  // clear localStorage after an hour
+  const textColors = [
+    'rgb(54, 55, 36)',
+    'rgb(180, 11, 17)',
+    'rgb(46, 37, 26)',
+    'rgb(0, 0, 0)',
+    'rgb(50, 51, 25)',
+    'rgb(178, 184, 205)',
+    'rgb(27, 65, 200)'
+  ]
+
+  const hoverColors = [
+    'rgba(54, 55, 36, .3)',
+    'rgba(180, 11, 17, .3)',
+    'rgba(46, 37, 26, .3)',
+    'rgba(0, 0, 0, .3)',
+    'rgba(50, 51, 25, .3)',
+    'rgba(178, 184, 205, .3)',
+    'rgba(27, 65, 200, .3)'
+  ];
+  const randomNumber = Math.floor(Math.random() * backgroundColors.length);
+  root.style.setProperty('--background-color', backgroundColors[randomNumber]);
+  root.style.setProperty('--text-color', textColors[randomNumber])
+  root.style.setProperty('--border-color', textColors[randomNumber])
+  root.style.setProperty('--hover-color', hoverColors[randomNumber])
+
   const calendarObject = document.getElementById('calendar');
   const calendarDocument = calendarObject.contentDocument;
   const calendarSVG = calendarDocument.getElementById('github-calendar');
