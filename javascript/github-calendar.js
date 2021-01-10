@@ -85,7 +85,14 @@ const fetchContributionData = (weeks) => {
 window.onload = function() {
   // change background color when user refreshes page
   const root = document.documentElement;
-  const colors = ['rgb(221, 132, 52)', 'rgb(254, 204, 192)', 'rgb(226, 181, 147)', 'rgb(220, 220, 220)', 'rgb(153, 170, 145)', 'rgb(93, 131, 167)'];
+  const colors = [
+    'rgb(221, 132, 52)',
+    'rgb(254, 204, 192)',
+    'rgb(226, 181, 147)',
+    'rgb(220, 220, 220)',
+    'rgb(153, 170, 145)',
+    'rgb(93, 131, 167)',
+  ];
   const randomNumber = Math.floor(Math.random() * colors.length);
   root.style.setProperty('--background-color', colors[randomNumber]);
 
