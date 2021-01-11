@@ -27,6 +27,10 @@ h2::selection {
   background-color: var(--hover-color);
 }
 
+h3::selection {
+  background-color: var(--hover-color);
+}
+
 p::selection {
   background-color: var(--hover-color);
 }
@@ -41,6 +45,11 @@ h2 {
   font-size: 30px;
   font-weight: 300;
   text-transform: uppercase;
+  margin: 0;
+}
+
+h3 {
+  font-size: 21px;
 }
 
 p {
@@ -97,13 +106,13 @@ p {
   overflow: hidden;
 }
 
-.post-preview:hover {
+/* .post-preview:hover {
   background-color: var(--hover-color);
   border-color: var(--hover-color);
   cursor: pointer;
   transform: scale(1.01);
   transition: all .2s linear;
-}
+} */
 
 .post-header {
   font-size: 4vw;

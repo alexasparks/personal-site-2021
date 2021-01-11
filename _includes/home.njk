@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="public/styles/index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
-    <script src="javascript/github-calendar.js" />
+    <script src="javascript/github-calendar.js" defer></script>
 </head>
 
 <body>
@@ -19,7 +19,6 @@
     <h2 id="label">github</h2>
     <object id="calendar" data="public/svg/github-calendar.svg" alt="github contribution calendar"></object>
   </section>
-
   <section class="writing">
     <h2>writing</h2>
     <div class="posts">
@@ -32,7 +31,7 @@
     </div>
   </section>
 
-  <section class="contact">
+  {# <section class="contact">
     <h2>contact</h2>
     <form>
       <label for="name">name</label>
@@ -41,7 +40,7 @@
       <input type="textarea" id="message">
       <input type="submit" value="send">
     </form>
-  </section>
+  </section> #}
 
   {{ content | safe }}
 </body>

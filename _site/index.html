@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="public/styles/index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
-    <script src="javascript/github-calendar.js" />
+    <script src="javascript/github-calendar.js" defer></script>
 </head>
 
 <body>
@@ -19,49 +19,37 @@
     <h2 id="label">github</h2>
     <object id="calendar" data="public/svg/github-calendar.svg" alt="github contribution calendar"></object>
   </section>
-
   <section class="writing">
     <h2>writing</h2>
     <div class="posts">
       
         <div class="post-preview">
-          <h3 class="post-header">A third post</h3>
+          <h3 class="post-header">About</h3>
           <div id="post-html">
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &#8220;de Finibus Bonorum et Malorum&#8221; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &#8220;Lorem ipsum dolor sit amet..&#8221;, comes from a line in section 1.10.32.</p>
+<p>👋 My name is Alexa. I&#8217;m a professional software developer, amateur home chef, craft cocktail enthusiast, book lover, and video game nerd. </p>
 
 
 
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &#8220;de Finibus Bonorum et Malorum&#8221; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-        </div>
-      
-        <div class="post-preview">
-          <h3 class="post-header">Post with a really long title</h3>
-          <div id="post-html">
-<p>This is another post for testing purposes.</p>
-</div>
-        </div>
-      
-        <div class="post-preview">
-          <h3 class="post-header">Hello world!</h3>
-          <div id="post-html">
-<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>
+<p>I built this website with <a href="https://www.11ty.dev/">Eleventy</a>. Eleventy is perfect for simple static sites because it&#8217;s very easy to get started with and the build output is just html.</p>
+
+
+
+<p>For the GitHub chart at the top of the page (not visible on mobile), I created an SVG graph and hooked into <a href="https://docs.github.com/en/free-pro-team@latest/graphql">GitHub&#8217;s GraphQL API</a> to get my contribution data. I&#8217;m using plain &#8216;ol JavaScript to change the tile fills. It looks sparse now because I started tracking on the first of the year, but it should look pretty neat by December.</p>
+
+
+
+<p>The post your reading is pulled from a WordPress site using GraphQL &amp; <a href="https://www.npmjs.com/package/node-fetch">node-fetch</a>. I had to install the <a href="https://www.wpgraphql.com/">WPGraphQL</a> plugin on my site, then after that things just worked!</p>
+
+
+
+<p></p>
 </div>
         </div>
       
     </div>
   </section>
 
-  <section class="contact">
-    <h2>contact</h2>
-    <form>
-      <label for="name">name</label>
-      <input type="text" id="name">
-      <label for="message">message</label>
-      <input type="textarea" id="message">
-      <input type="submit" value="send">
-    </form>
-  </section>
+  
 
   
 </body>

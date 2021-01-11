@@ -79,7 +79,7 @@ const fetchContributionData = async () => {
   return responseJSON;
 }
 
-window.onload = async function() {
+window.onload = function() {
   // change background color when user refreshes page
   const root = document.documentElement;
 
@@ -119,12 +119,13 @@ window.onload = async function() {
   root.style.setProperty('--hover-color', hoverColors[randomNumber])
 
   const calendarObject = document.getElementById('calendar');
+
+
   const calendarDocument = calendarObject.contentDocument;
   const calendarSVG = calendarDocument.getElementById('github-calendar');
-
   const weeks = calendarSVG.getElementsByTagName('g')
 
-  const contributionData = await fetchContributionData();
-
+  const contributionData = Promise.resolve(fetchContributionData());
+s
   setCalendarStyles(contributionData, weeks);
 }

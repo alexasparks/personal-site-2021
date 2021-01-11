@@ -5,6 +5,9 @@
   "repository": "git@github.com:alexasparks/personal-site-2021.git",
   "author": "Alexa <alexa.sparks@wpengine.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "eleventy"
+  },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.1",
     "dotenv": "^8.2.0",
