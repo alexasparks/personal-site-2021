@@ -126,6 +126,6 @@ window.onload = function() {
   const weeks = calendarSVG.getElementsByTagName('g')
 
   const contributionData = Promise.resolve(fetchContributionData());
-s
+
   setCalendarStyles(contributionData, weeks);
 }
