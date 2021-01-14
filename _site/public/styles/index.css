@@ -130,3 +130,7 @@ p {
     display: none;
   }
 }
+
+#token {
+  visibility: hidden;
+}

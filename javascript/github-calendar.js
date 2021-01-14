@@ -64,10 +64,13 @@ const fetchContributionData = async () => {
 
   const body = JSON.stringify(githubQuery);
 
+  const tokenEl = document.getElementById('token');
+  const token = tokenEl.getAttribute('name');
+
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer `,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     body,
@@ -79,7 +82,7 @@ const fetchContributionData = async () => {
   return responseJSON;
 }
 
-window.onload = function() {
+window.onload = async function() {
   // change background color when user refreshes page
   const root = document.documentElement;
 
@@ -120,12 +123,12 @@ window.onload = function() {
 
   const calendarObject = document.getElementById('calendar');
 
-
   const calendarDocument = calendarObject.contentDocument;
   const calendarSVG = calendarDocument.getElementById('github-calendar');
   const weeks = calendarSVG.getElementsByTagName('g')
 
-  const contributionData = Promise.resolve(fetchContributionData());
-
+  const contributionData = await fetchContributionData();
+  console.log("contributionData", contributionData)
+  console.log("weeks", weeks)
   setCalendarStyles(contributionData, weeks);
 }

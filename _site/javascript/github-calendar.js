@@ -64,10 +64,13 @@ const fetchContributionData = async () => {
 
   const body = JSON.stringify(githubQuery);
 
+  const tokenEl = document.getElementById('token');
+  const token = tokenEl.getAttribute('name');
+
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer 30481c6f8a3b51c60b6245fd2541ef0ba95d3bf9`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     body,
@@ -79,7 +82,7 @@ const fetchContributionData = async () => {
   return responseJSON;
 }
 
-window.onload = function() {
+window.onload = async function() {
   // change background color when user refreshes page
   const root = document.documentElement;
 
@@ -120,15 +123,12 @@ window.onload = function() {
 
   const calendarObject = document.getElementById('calendar');
 
-  console.log('calendarObject.contentDocument', calendarObject.contentDocument)
-  calendarObject.addEventListener('load', function() {
-    const calendarDocument = calendarObject.contentDocument;
-    console.log('calendarDocument', calendarDocument)
-    const calendarSVG = calendarDocument.getElementById('github-calendar');
-    const weeks = calendarSVG.getElementsByTagName('g')
-    console.log('weeks', weeks)
-    const contributionData = Promise.resolve(fetchContributionData());
-    console.log('contributionData', contributionData)
-    setCalendarStyles(contributionData, weeks);
-  })
+  const calendarDocument = calendarObject.contentDocument;
+  const calendarSVG = calendarDocument.getElementById('github-calendar');
+  const weeks = calendarSVG.getElementsByTagName('g')
+
+  const contributionData = await fetchContributionData();
+  console.log("contributionData", contributionData)
+  console.log("weeks", weeks)
+  setCalendarStyles(contributionData, weeks);
 }
