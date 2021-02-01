@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="public/styles/index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
-    <script src="javascript/github-calendar.js" defer></script>
+    <script>
+      var token = "{{ github.githubKey }}"
+    </script>
+    <script src="javascript/github-calendar.js"></script>
 </head>
 
 <body>
@@ -14,7 +17,7 @@
     <h1>{{ name }}</h1>
     <p>{{ job }}</p>
   </header>
-  <div name="{{ github.token }}" id="token"></div>
+  <div id="token"></div>
   <section class="github-contributions">
     <h2 id="label">github</h2>
     <object id="calendar" data="public/svg/github-calendar.svg" alt="github contribution calendar"></object>

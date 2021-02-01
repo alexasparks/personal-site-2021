@@ -15,6 +15,7 @@ module.exports = function(eleventyConfig) {
       templateFormats : ['njk', 'md'],
       htmlTemplateEngine : 'njk',
       markdownTemplateEngine : 'njk',
-      passthroughFileCopy: true
+      passthroughFileCopy: true,
+      githubKey: process.env.GITHUB_TOKEN,
     }
 }

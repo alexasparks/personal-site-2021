@@ -40,6 +40,7 @@ module.exports = async () => {
 
   return {
     weeklyContributions,
+    githubKey: process.env.GITHUB_TOKEN,
   }
 }
 

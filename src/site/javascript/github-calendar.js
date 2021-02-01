@@ -1,5 +1,3 @@
-import githubToken from 'config';
-
 const setCalendarStyles = (weeklyContributions, weeks) => {
   const numDaysInAWeek = [0, 1, 2, 3, 4, 5, 6];
 
@@ -39,12 +37,11 @@ const setCalendarStyles = (weeklyContributions, weeks) => {
 }
 
 window.onload = async function() {
+  console.log('githubKey ', "{{ github.githubKey}}");
   // change background color when user refreshes page
   const root = document.documentElement;
 
   const backgroundColors = [
-    'rgb(221, 132, 52)',
-    'rgb(254, 204, 192)',
     'rgb(226, 181, 147)',
     'rgb(220, 220, 220)',
     'rgb(153, 170, 145)',
@@ -53,8 +50,6 @@ window.onload = async function() {
   ];
 
   const textColors = [
-    'rgb(54, 55, 36)',
-    'rgb(180, 11, 17)',
     'rgb(46, 37, 26)',
     'rgb(0, 0, 0)',
     'rgb(50, 51, 25)',
@@ -63,28 +58,29 @@ window.onload = async function() {
   ]
 
   const hoverColors = [
-    'rgba(54, 55, 36, .3)',
-    'rgba(180, 11, 17, .3)',
     'rgba(46, 37, 26, .3)',
     'rgba(0, 0, 0, .3)',
     'rgba(50, 51, 25, .3)',
     'rgba(178, 184, 205, .3)',
     'rgba(27, 65, 200, .3)'
   ];
-  const randomNumber = Math.floor(Math.random() * backgroundColors.length);
-  root.style.setProperty('--background-color', backgroundColors[randomNumber]);
-  root.style.setProperty('--text-color', textColors[randomNumber])
-  root.style.setProperty('--border-color', textColors[randomNumber])
-  root.style.setProperty('--hover-color', hoverColors[randomNumber])
 
-  console.log('githubToken', githubToken);
+  const startColorRotation = () => {
+    console.log('new color')
+    const randomNumber = Math.floor(Math.random() * backgroundColors.length);
+    root.style.setProperty('--background-color', backgroundColors[randomNumber]);
+    root.style.setProperty('--text-color', textColors[randomNumber])
+    root.style.setProperty('--border-color', textColors[randomNumber])
+    root.style.setProperty('--hover-color', hoverColors[randomNumber])
+  }
+
+  setInterval(startColorRotation, 10000)
+
   const calendarObject = document.getElementById('calendar');
 
   const calendarDocument = calendarObject.contentDocument;
   const calendarSVG = calendarDocument.getElementById('github-calendar');
   const weeks = calendarSVG.getElementsByTagName('g')
 
-  console.log("data", data)
-  console.log("weeks", weeks)
-  setCalendarStyles(weeklyContributions, weeks);
+  // setCalendarStyles(weeklyContributions, weeks);
 }
