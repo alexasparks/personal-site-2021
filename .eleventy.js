@@ -2,9 +2,19 @@ require('dotenv').config();
 const Nunjucks = require('nunjucks');
 
 module.exports = function(eleventyConfig) {
-    const nunjucksEnvironment = new Nunjucks.Environment( new Nunjucks.FileSystemLoader('_includes'));
-    eleventyConfig.setLibrary('njk', nunjucksEnvironment);
+    eleventyConfig.addPassthroughCopy('src/site/public');
+    eleventyConfig.addPassthroughCopy('src/site/javascript');
 
-    eleventyConfig.addPassthroughCopy('public');
-    eleventyConfig.addPassthroughCopy('javascript');
+    return {
+      dir: {
+        input: 'src/site',
+        output: 'dist',
+        data: '_data',
+        layouts: '_includes'
+      },
+      templateFormats : ['njk', 'md'],
+      htmlTemplateEngine : 'njk',
+      markdownTemplateEngine : 'njk',
+      passthroughFileCopy: true
+    }
 }

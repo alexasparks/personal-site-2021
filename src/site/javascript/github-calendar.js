@@ -1,8 +1,6 @@
-const setCalendarStyles = (calendarData, weeks) => {
-  // Set Calendar Data attributes
-  const weeklyContributions = calendarData?.data?.user?.contributionsCollection?.contributionCalendar?.weeks
-  ?.map((week) => week.contributionDays)
+import githubToken from 'config';
 
+const setCalendarStyles = (weeklyContributions, weeks) => {
   const numDaysInAWeek = [0, 1, 2, 3, 4, 5, 6];
 
   weeklyContributions.forEach((weeklyContribution, index) => {
@@ -38,48 +36,6 @@ const setCalendarStyles = (calendarData, weeks) => {
       }
     })
   })
-}
-
-const fetchContributionData = async () => {
-  // @TODO: Update the date string every new year (or think of automated solution)
-  const githubQuery = {
-    "query" : `{
-      user(login: "alexasparks"){
-        contributionsCollection(from: "2021-01-01T06:00:00.000Z") {
-            totalCommitContributions
-            contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays {
-                    date
-                    contributionCount
-                    weekday
-                  }
-                }
-            }
-        }
-      }
-    }`
-  }
-
-  const body = JSON.stringify(githubQuery);
-
-  const tokenEl = document.getElementById('token');
-  const token = tokenEl.getAttribute('name');
-
-  const response = await fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body,
-  })
-    .catch((error) => console.error(error));
-
-  const responseJSON = await response.json();
-
-  return responseJSON;
 }
 
 window.onload = async function() {
@@ -121,14 +77,14 @@ window.onload = async function() {
   root.style.setProperty('--border-color', textColors[randomNumber])
   root.style.setProperty('--hover-color', hoverColors[randomNumber])
 
+  console.log('githubToken', githubToken);
   const calendarObject = document.getElementById('calendar');
 
   const calendarDocument = calendarObject.contentDocument;
   const calendarSVG = calendarDocument.getElementById('github-calendar');
   const weeks = calendarSVG.getElementsByTagName('g')
 
-  const contributionData = await fetchContributionData();
-  console.log("contributionData", contributionData)
+  console.log("data", data)
   console.log("weeks", weeks)
-  setCalendarStyles(contributionData, weeks);
+  setCalendarStyles(weeklyContributions, weeks);
 }
